@@ -71,6 +71,21 @@
   const ENTRIES_KEY = 'dtr:entries';
   const THEME_KEY = 'dtr:theme';
 
+  const storage = {
+    async get(key, isSecure) {
+      if (window.storage) return window.storage.get(key, isSecure);
+      return { value: localStorage.getItem(key) };
+    },
+    async set(key, value, isSecure) {
+      if (window.storage) return window.storage.set(key, value, isSecure);
+      localStorage.setItem(key, value);
+    },
+    async delete(key, isSecure) {
+      if (window.storage) return window.storage.delete(key, isSecure);
+      localStorage.removeItem(key);
+    },
+  };
+
   function todayStr() {
     return toLocalISODate(new Date());
   }
@@ -123,30 +138,30 @@
 
   async function loadState() {
     try {
-      const c = await window.storage.get(CONFIG_KEY, false);
+      const c = await storage.get(CONFIG_KEY, false);
       if (c && c.value) config = JSON.parse(c.value);
     } catch (e) { config = null; }
     try {
-      const e = await window.storage.get(ENTRIES_KEY, false);
+      const e = await storage.get(ENTRIES_KEY, false);
       if (e && e.value) entries = JSON.parse(e.value);
       entries = entries.map(row => ({ status: 'work', ...row }));
     } catch (e) { entries = []; }
 
     let theme = 'system';
     try {
-      const t = await window.storage.get(THEME_KEY, false);
+      const t = await storage.get(THEME_KEY, false);
       if (t && t.value) theme = t.value;
     } catch (e) { theme = 'system'; }
     applyTheme(theme);
   }
 
   async function saveConfig() {
-    try { await window.storage.set(CONFIG_KEY, JSON.stringify(config), false); }
+    try { await storage.set(CONFIG_KEY, JSON.stringify(config), false); }
     catch (e) { console.error('Storage error saving config', e); }
   }
 
   async function saveEntries() {
-    try { await window.storage.set(ENTRIES_KEY, JSON.stringify(entries), false); }
+    try { await storage.set(ENTRIES_KEY, JSON.stringify(entries), false); }
     catch (e) { console.error('Storage error saving entries', e); }
   }
 
@@ -171,7 +186,7 @@
     if (!btn) return;
     const mode = btn.dataset.theme;
     applyTheme(mode);
-    window.storage.set(THEME_KEY, mode, false).catch(() => {});
+    storage.set(THEME_KEY, mode, false).catch(() => {});
   });
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
@@ -377,8 +392,8 @@
     if (!ok) return;
     config = null;
     entries = [];
-    try { await window.storage.delete(CONFIG_KEY, false); } catch (e) { /* key may not exist */ }
-    try { await window.storage.delete(ENTRIES_KEY, false); } catch (e) { /* key may not exist */ }
+    try { await storage.delete(CONFIG_KEY, false); } catch (e) { /* key may not exist */ }
+    try { await storage.delete(ENTRIES_KEY, false); } catch (e) { /* key may not exist */ }
     els.startDate.value = todayStr();
     els.totalHours.value = '';
     els.hoursPerDay.value = '';
