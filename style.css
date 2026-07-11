@@ -182,6 +182,23 @@
     font-size: 13px;
     color: var(--ink);
   }
+  .field input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 14 14' fill='none' stroke='%23737373' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.5' y='2.5' width='11' height='10' rx='1.5'/%3E%3Cpath d='M4 1v2M10 1v2M1.5 6h11'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    padding-right: 2rem;
+  }
+  .field input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    width: 2rem;
+    height: 100%;
+    cursor: pointer;
+  }
   .field input:focus { outline: 1px solid var(--gray-300); outline-offset: 1px; }
 
   .checkbox-row {
@@ -283,7 +300,6 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    min-width: 480px;
   }
   thead th {
     text-align: left;
@@ -445,7 +461,11 @@
     .stat-cell:nth-child(2) { border-right: none; }
     .stat-value { font-size: 1.25rem; }
     table { font-size: 12px; }
-    thead th:nth-child(4), tbody td:nth-child(4) { display: none; }
+    thead th, tbody td { padding: 0.45rem 0.4rem; }
+    thead th:nth-child(2), tbody td:nth-child(2) { display: none; }
+    thead th:nth-child(5), tbody td:nth-child(5) { display: none; }
+    .hours-input { width: 3.5rem; font-size: 12px; padding: 0.25rem 0.3rem; }
+    .actions-cell { text-align: right; }
     .table-footer { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
     .modal-panel { margin: 0.5rem; padding: 1.25rem; }
   }
@@ -459,7 +479,10 @@
     .card { padding: 1rem; }
     .actions { flex-direction: column; }
     .actions .btn { width: 100%; text-align: center; }
-    thead th:nth-child(3), tbody td:nth-child(3) { display: none; }
+    thead th, tbody td { padding: 0.35rem 0.3rem; }
+    .hours-input { width: 3rem; font-size: 11px; }
+    .pill { font-size: 8px; padding: 1px 6px; }
+    .actions-menu > summary { width: 22px; height: 20px; font-size: 12px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

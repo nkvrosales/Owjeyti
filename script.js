@@ -99,6 +99,9 @@
 
   function fmtDate(str) {
     const d = new Date(str + 'T00:00:00');
+    if (window.innerWidth <= 720) {
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    }
     return d.toLocaleDateString(undefined, { month: 'short', day: '2-digit', year: 'numeric' });
   }
 
