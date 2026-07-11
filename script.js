@@ -309,7 +309,7 @@
             <th>Day</th>
             <th>Hours</th>
             <th>Status</th>
-            <th>Running total</th>
+            <th>Total</th>
             <th style="text-align:right;">Actions</th>
           </tr>
         </thead>

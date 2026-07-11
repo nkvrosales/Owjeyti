@@ -460,12 +460,15 @@
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
     .stat-cell:nth-child(2) { border-right: none; }
     .stat-value { font-size: 1.25rem; }
-    table { font-size: 12px; }
-    thead th, tbody td { padding: 0.45rem 0.4rem; }
-    thead th:nth-child(2), tbody td:nth-child(2) { display: none; }
-    thead th:nth-child(5), tbody td:nth-child(5) { display: none; }
-    .hours-input { width: 3.5rem; font-size: 12px; padding: 0.25rem 0.3rem; }
-    .actions-cell { text-align: right; }
+    table { font-size: 11px; table-layout: fixed; }
+    thead th, tbody td { padding: 0.4rem 0.25rem; white-space: nowrap; overflow: hidden; }
+    thead th:first-child, tbody td:first-child { width: 26%; }
+    thead th:nth-child(2), tbody td:nth-child(2) { width: 11%; }
+    thead th:nth-child(3), tbody td:nth-child(3) { width: 16%; }
+    thead th:nth-child(4), tbody td:nth-child(4) { width: 17%; }
+    thead th:nth-child(5), tbody td:nth-child(5) { width: 14%; }
+    thead th:last-child, tbody td:last-child { width: 16%; text-align: right; }
+    .hours-input { width: 100%; font-size: 11px; padding: 0.2rem 0.2rem; }
     .table-footer { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
     .modal-panel { margin: 0.5rem; padding: 1.25rem; }
   }
@@ -479,10 +482,10 @@
     .card { padding: 1rem; }
     .actions { flex-direction: column; }
     .actions .btn { width: 100%; text-align: center; }
-    thead th, tbody td { padding: 0.35rem 0.3rem; }
-    .hours-input { width: 3rem; font-size: 11px; }
-    .pill { font-size: 8px; padding: 1px 6px; }
-    .actions-menu > summary { width: 22px; height: 20px; font-size: 12px; }
+    thead th, tbody td { padding: 0.35rem 0.2rem; font-size: 10px; }
+    .hours-input { font-size: 10px; padding: 0.15rem 0.15rem; }
+    .pill { font-size: 8px; padding: 1px 5px; letter-spacing: 0; }
+    .actions-menu > summary { width: 20px; height: 18px; font-size: 11px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
