@@ -411,5 +411,8 @@
     els.startDate.value = todayStr();
     await loadState();
     render();
+    if ('serviceWorker' in navigator) {
+      try { await navigator.serviceWorker.register('sw.js'); } catch (e) { /* noop */ }
+    }
   })();
 })();
